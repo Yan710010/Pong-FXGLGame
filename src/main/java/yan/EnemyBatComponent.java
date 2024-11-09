@@ -134,13 +134,13 @@ public class EnemyBatComponent extends Component {
             } else {
                 target = 580;
             }
-        } else if (entity.getX() - bx < 40){
+        } else if (entity.getX() - bx < 40) {
             // 距离很近了,机动一下
             target = by;
-        }else if (!isTarget && vx > 0 && bx > 200) {
+        } else if (!isTarget && vx > 0 && bx > 200) {
             // 如果还没有预测球的轨迹,并且球正在往这边飞来
-            // 有1/5的概率瞎猜
-            if (random() < 0.2) {
+            // 有1/6的概率瞎猜
+            if (random() < 1d / 6) {
                 target = random() * 600;
             } else {
                 // 不瞎猜!

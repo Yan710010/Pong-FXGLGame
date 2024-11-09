@@ -30,7 +30,7 @@ public class PongApp extends GameApplication {
             "打赢这种程度的敌人有什么好骄傲的",
             "恭喜玩家获得胜利!",
             "不错不错,挺有实力的嘛",
-            "----您----"// 这里可以改一下
+            "------您------"// 这里可以改一下
     };
     // 玩家失败的提示
     final String[] enemyWinStrings = new String[]{
@@ -200,7 +200,7 @@ public class PongApp extends GameApplication {
         getGameScene().setBackgroundColor(Color.BLACK);
 
         // 生成球
-        spawn("ball", new SpawnData(getAppWidth() / 2, getAppHeight() / 2));
+        spawn("ball", new SpawnData(getAppWidth() / 2d, getAppHeight() / 2d));
         // 生成玩家拍子
         spawn("bat", new SpawnData().put("isPlayer", true));
         // 生成电脑拍子
