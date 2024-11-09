@@ -64,8 +64,8 @@ public class BallComponent extends Component {
     private void checkOffscreen() {
         if (getEntity().getBoundingBoxComponent().isOutside(getGameScene().getViewport().getVisibleArea())) {
             physics.overwritePosition(new Point2D(
-                    getAppWidth() / 2,
-                    getAppHeight() / 2
+                    getAppWidth() / 2d,
+                    getAppHeight() / 2d
             ));
         }
     }

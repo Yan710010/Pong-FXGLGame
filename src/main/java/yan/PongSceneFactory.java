@@ -12,10 +12,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-import org.jetbrains.annotations.NotNull;
 
 public class PongSceneFactory extends SceneFactory {
-    @NotNull
     @Override
     public FXGLMenu newMainMenu() {
         return new FXGLMenu(MenuType.MAIN_MENU) {
