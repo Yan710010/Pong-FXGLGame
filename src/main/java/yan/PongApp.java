@@ -30,24 +30,27 @@ public class PongApp extends GameApplication {
             "打赢这种程度的敌人有什么好骄傲的",
             "恭喜玩家获得胜利!",
             "不错不错,挺有实力的嘛",
-            "------您------"// 这里可以改一下
+            "------您------",
+            "啊?"
     };
     // 玩家失败的提示
     final String[] enemyWinStrings = new String[]{
             "怎么连入机版的入机都打不过? 你才是真入机",
             "菜就多练",
             "杂鱼~ 杂鱼~",
-            "再接再厉喵!"
+            "再接再厉喵!",
+            ""
     };
 
     @Override
     protected void initSettings(GameSettings settings) {
         // 名字
         settings.setTitle("Pong");
-        settings.setVersion("1.0");
+        settings.setVersion("1.1");
         // 窗口大小
         settings.setWidth(800);
         settings.setHeight(600);
+        settings.setManualResizeEnabled(true);
         // 启用开始菜单
         settings.setMainMenuEnabled(true);
 //        settings.setGameMenuEnabled(false);

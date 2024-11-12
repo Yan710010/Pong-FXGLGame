@@ -33,12 +33,12 @@ public class PlayerBatComponent extends Component {
     @Override
     public void onUpdate(double tpf) {
         // 如果是鼠标操控
-        if (FXGL.getb("mousePressed")){
+        if (FXGL.getb("mousePressed")) {
             double mouseY = FXGL.getInput().getMouseYWorld();
-            if (entity.getY() > mouseY) {// 如果球在上面
+            if (entity.getY() > mouseY - 35) {// 如果鼠标在上面
                 // 向上移动
                 a_m = -A;
-            } else if (entity.getBottomY() < mouseY) {//如果球在下面
+            } else if (entity.getBottomY() < mouseY + 35) {//如果鼠标在下面
                 // 向下移动
                 a_m = A;
             } else { // 就在中间
@@ -51,7 +51,7 @@ public class PlayerBatComponent extends Component {
                 double vy = physics.getVelocityY();
                 physics.setVelocityY(max(0, abs(vy) + A_ * tpf) * signum(vy));
             }
-        }else {
+        } else {
             // 修改当前速度
             if (a != 0) {
                 physics.setVelocityY(min(max(physics.getVelocityY() + a * tpf, -MaxSpeed), MaxSpeed));
@@ -62,11 +62,11 @@ public class PlayerBatComponent extends Component {
         }
 
         // 出界判定
-        if (entity.getY() < 0){
-            physics.overwritePosition(new Point2D(entity.getX(),0));
+        if (entity.getY() < 0) {
+            physics.overwritePosition(new Point2D(entity.getX(), 0));
         }
-        if (entity.getBottomY() > FXGL.getAppHeight()){
-            physics.overwritePosition(new Point2D(entity.getX(),FXGL.getAppHeight()-entity.getHeight()));
+        if (entity.getBottomY() > FXGL.getAppHeight()) {
+            physics.overwritePosition(new Point2D(entity.getX(), FXGL.getAppHeight() - entity.getHeight()));
         }
 
         // 旋转

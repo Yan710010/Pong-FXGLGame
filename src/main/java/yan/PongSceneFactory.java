@@ -21,12 +21,13 @@ public class PongSceneFactory extends SceneFactory {
                     "入机模式就是入机模式嘛",
                     "只会追着球傻跑的AI,\n但是并不简单",
                     "更加沉稳的AI",
-                    "会尝试预测球的轨迹的AI"
+                    "会尝试预测球的轨迹的AI",
+                    "会更加准确的预测轨迹\n会尝试使球转向"
             };
-            final String[] difficultyName = new String[]{"入机", "经典","普通","困难"};
+            final String[] difficultyName = new String[]{"入机", "经典","普通","困难","困难+"};
 
             int difficulty = 1;
-            final int num_dif = 4;
+            final int num_dif = 5;
 
             @Override
             public void onCreate() {

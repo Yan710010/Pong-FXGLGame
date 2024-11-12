@@ -37,6 +37,7 @@ public class EnemyBatComponent extends Component {
             case 1 -> AI_1();
             case 2 -> AI_2();
             case 3 -> AI_3();
+            case 4 -> AI_4();
         }
 
         // 按照加速度修改拍子速度,同玩家
@@ -185,6 +186,81 @@ public class EnemyBatComponent extends Component {
             // 向上移动
             a = -A;
         } else if (entity.getBottomY() - 20 < target) {//如果球在下面
+            // 向下移动
+            a = A;
+        } else { // 就在中间
+            a = 0;
+        }
+    }
+
+    void AI_4() {
+        // 比困难更困难（）
+        double bx = ball.getX(), by = ball.getY(),
+                vx = ball.getComponent(PhysicsComponent.class).getVelocityX(), vy = ball.getComponent(PhysicsComponent.class).getVelocityY();
+        // 避让
+        if (bx > entity.getX()) {// 球在拍子右边
+            if (by > entity.getY()) {
+                target = -20;
+            } else {
+                target = 620;
+            }
+        } else if (entity.getX() - bx < vx * 0.12) {
+            // 距离很近了,机动一下
+            target = by;
+        } else if (!isTarget && vx > 0 && bx > 200) {
+            // 如果还没有预测球的轨迹,并且球正在往这边飞来
+            // 有1/10的概率瞎猜
+            if (random() < 1d / 10) {
+                target = random() * 600;
+            } else {
+                // 不瞎猜!
+//                System.out.println("-------------开始预测-------------");
+                // 计算球将要飞的距离
+                double disY = by + (entity.getX() - bx) / vx * vy;
+//                System.out.println("disY = " + disY);
+                // 计算球的落点
+                if (disY > 0 && disY < 600) {
+                    // 没有经过反弹,可以直接赋值
+                    target = disY;
+//                    System.out.println("未反弹");
+                } else {
+                    // 在墙上弹过至少一次
+                    if (disY < 0) {
+                        // 总位移向上,将其等价为向下的位移
+                        disY = 1200 - disY;
+//                        System.out.println("总位移向上,将其等价为向下的位移:" + disY);
+                    }
+                    // 将总位移%600 再判断反弹次数 得到最终位置
+                    target = disY % 600;
+//                    System.out.println("target :" + target);
+                    if (((int) disY / 600) % 2 != 0) {
+                        target = 600 - target;
+//                        System.out.println("反向!");
+                    }
+                }
+                // 然后！稍微偏移一点！
+                if (random() < 0.6) {
+                    // 0.6概率偏移
+                    target += signum(random() - 0.5) * 30;
+                    target = min(570, max(30, target));
+                }
+            }
+//            System.out.println("预测落点为:" + target);
+            // 调试:显示落点
+//            FXGL.entityBuilder().at(entity.getX(), target).view(new Circle(5, Color.RED)).with(new ExpireCleanComponent(Duration.seconds(2.0))).buildAndAttach();
+            // 猜完了
+            isTarget = true;
+        } else if (vx < 0 && bx < entity.getX() && isTarget) {
+            // 这是在回去的路上了
+            isTarget = false;
+            target = 300;
+        }
+
+        // 向目标移动
+        if (entity.getY() + 30 > target) {// 如其在上
+            // 向上移动
+            a = -A;
+        } else if (entity.getBottomY() - 30 < target) {//如其在下
             // 向下移动
             a = A;
         } else { // 就在中间
