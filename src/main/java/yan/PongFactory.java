@@ -51,7 +51,7 @@ public class PongFactory implements EntityFactory {
         particleEmitter.endColorProperty().bind(
                 Bindings.when(endGame)
                         .then(Color.RED)
-                        .otherwise(Color.GRAY)
+                        .otherwise(Color.LIGHTBLUE)
         );
 
         // 参考文章 https://blog.csdn.net/qq_41054313/article/details/125814528
