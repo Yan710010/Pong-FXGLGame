@@ -16,6 +16,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -169,9 +173,6 @@ public class PongApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        // 缓存音效
-        getAssetLoader().loadSound("hit_bat.wav");
-        getAssetLoader().loadSound("hit_wall.wav");
         // 球与墙壁的碰撞
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(PongType.ball, PongType.wall) {
             @Override
@@ -197,6 +198,9 @@ public class PongApp extends GameApplication {
 
     @Override
     protected void initGame() {
+        // 缓存音效
+        getAssetLoader().loadSound("hit_bat.wav");
+        getAssetLoader().loadSound("hit_wall.wav");
         //添加实体工厂
         getGameWorld().addEntityFactory(new PongFactory());
 

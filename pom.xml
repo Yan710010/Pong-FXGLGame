@@ -40,12 +40,11 @@
                 <version>0.0.8</version>
                 <configuration>
                     <stripDebug>true</stripDebug>
-                    <compress>2</compress>
                     <noHeaderFiles>true</noHeaderFiles>
                     <noManPages>true</noManPages>
                     <launcher>Pong</launcher>
                     <jlinkImageName>Pong</jlinkImageName>
-                    <jlinkZipName>PongZip</jlinkZipName>
+                    <jlinkZipName>Pong</jlinkZipName>
                     <mainClass>yan.PongApp</mainClass>
                 </configuration>
             </plugin>
